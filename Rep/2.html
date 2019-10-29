@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <p>ferdighet 2. Lag en quiz med 3 spørsmål og tekst som viser riktig eller feil.</p>
+    </b>
+    <h1>Hvilken dag er Norges nasjonaldag?</h1>
+    <h2 id="a1"></h2>
+    
+
+    <button onclick="svarAlt1()">17.Mai</button>
+    <button onclick="svarAlt2()">17.Mars</button>
+    <button onclick="svarAlt3()">16.Mai</button>
+
+    <script>
+        function svarAlt1() {
+            document.getElementById('a1').innerHTML = 'Riktig';
+        }
+        function svarAlt2() {
+            document.getElementById('a1').innerHTML = 'Feil';
+        }
+        function svarAlt3() {
+            document.getElementById('a1').innerHTML = 'feil';
+        }
+    </script>
+</body>
+</html>

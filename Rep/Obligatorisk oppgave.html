@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>OBLIGATORISK 2</title>
+    <style>
+    .selected{
+        stroke: black;
+        stroke-width: 1;
+    }
+    </style>
+</head>
+<body>
+       <div>
+    <svg id="chart" width="500" viewBox="0 0 85 105"></svg>
+</div>
+Valgt stolpe:
+ <i id="Valgt">ingen</i>
+ <br> 
+Verdi: 
+<input id="inputValue" type="number" min="1" max="10" />
+<button onclick="LeggTilStolpe()">Legg til stolpe</button>
+<button id="endreStolpe" onclick="changeBar()" disabled>Endre valgt stolpe</button><br />
+<button id="fjernValgtStolpe" onclick="removeBar()" disabled>Fjerne valgt stolpe</button>
+
+<script>
+    // hjelpevariable for både view og controller
+    var svgTag = document.getElementById('chart');
+    let endreStolpe = document.getElementById("endreStolpe");
+    let fjernValgtStolpe = document.getElementById("fjernValgtStolpe");
+    let inputValue = document.getElementById("inputValue");
+
+
+    // model
+    let numbers = [7, 3, 1, 5, 8];
+    selectBar = null;
+    // view
+    showChart();
+    function showChart() {
+        let svgInnerHtml = '';
+        for (let i = 0; i < numbers.length; i++) {
+            svgInnerHtml += createBar(numbers[i], i + 1);
+        }
+        svgTag.innerHTML = svgInnerHtml;
+
+        var info = document.getElementById("Valgt");
+
+        let noSelection = selectedBar === null;
+            info.innerHTML = noSelection ? "ingen" : selectedBar;
+            endreStolpe.disabled = noSelection;
+            fjernValgtStolpe.disabled = noSelection;
+
+    }
+
+    function createBar(number, barNo) {
+        const width = 8;
+        const spacing = 2;
+        let x = (barNo - 1) * (width + spacing);
+        let height = number * 10;
+        let y = 100 - height;
+        let color = calcColor(1, 10, barNo);
+        let stroke;
+        if (barNo == selectedBar){
+            stroke = "class='selected'"
+        }
+        return `<rect
+        onclick="valgtRect(${barNo})" 
+        width="${width}" 
+        height="${height}"
+        x="${x}" 
+        y="${y}" 
+        fill="${color}"></rect>`;
+    }
+
+    function calcColor(min, max, val) {
+        var minHue = 290, maxHue = 0;
+        var curPercent = (val - min) / (max - min);
+        var colString = "hsl(" + ((curPercent * (maxHue - minHue)) + minHue) + ",100%,50%)";
+        return colString;
+    }
+    
+    // controller (ingenting her ennå)
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        div{
+            background: hotpink;
+            border: 1px dashed black;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <p ondblclick="myFunction()">Dobbelklikk her for å logge i console!</p>
+    <p id="logg1"></p>
+    <div oncontextmenu="myFunction2()">
+        <p>Høyre klikk på boksen for å se contextmenu!</p>
+    </div>
+
+    <p>Skriv noe i boksen for å få det i loggen!</p>
+    <input type="text" onkeydown="myFunction3()" />
+
+<script>
+    function myFunction() {
+       console.log("Du har dobbeltklikket på teksten");
+    }
+    function myFunction2() {
+        console.log("Du høyreklikket på boksen");
+    }
+    function myFunction3() {
+        console.log("Du har skrevet noe i boksen")  
+    }
+</script>
+</body>
+</html>

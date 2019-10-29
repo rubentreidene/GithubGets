@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8" />
+	<title>Kodelås</title>
+	<style>
+		body {
+			background-color: black;
+		}
+
+		.grid-container {
+			width: 300px;
+			display: grid;
+			grid-template-columns: 100px 100px 100px;
+			padding: 1%;
+			background-color: aqua;
+			margin-top: 20px;
+			margin-left: 20px;
+			margin-right: 20px;
+			
+			
+		}
+
+		.grid-item {
+			background-color: black;
+			color:aliceblue;
+			margin-top: 10px;
+			padding: 40px;
+			height: 20px;
+			width: 20px;
+			font-size: 20px;
+			text-align:center;
+		}
+		.grid-item1 {
+			background-color: black;
+			color:aliceblue;
+			margin-top: 10px;
+			padding: 40px;
+			height: 20px;
+			width: 20px;
+			font-size: 20px;
+			text-align:center;
+			margin-left: 100px;
+		}
+		.grid-container2 {
+			width: 325px;
+			background-color: white;
+			height: 50px;
+			text-align: center;
+			margin-top: 20px;
+			margin-left: 20px;
+			margin-right: 20px;
+			font-size: xx-large;
+			text-align: center;
+		
+		}
+
+	</style>
+</head>
+<body>
+	<div id="output" class="grid-container2">Code</div>
+	<div  id="number"class="grid-container">
+
+		<button onclick="knapp(this)" id="1" class="grid-item">1</button>
+		<button onclick="knapp(this)" id="2" class="grid-item">2</button>
+		<button onclick="knapp(this)" id="3" class="grid-item">3</button>
+		<button onclick="knapp(this)" id="4" class="grid-item">4</button>
+		<button onclick="knapp(this)" id="5" class="grid-item">5</button>
+		<button onclick="knapp(this)" id="6" class="grid-item">6</button>
+		<button onclick="knapp(this)" id="7" class="grid-item">7</button>
+		<button onclick="knapp(this)" id="8" class="grid-item">8</button>
+		<button onclick="knapp(this)" id="9" class="grid-item">9</button>
+		
+		<button onclick="knapp(this)" id="ok" class="grid-item1">OK</button>
+	
+		
+
+	</div>
+<script>
+    var tall = "";
+    var text = document.getElementById("number");
+
+    function display(boks1) {
+            var random = document.getElementById('output').innerHTML += boks1;
+        }
+
+    function knapp(output) {
+        if (tall == "8521") {
+            clear();
+            text.innerHTML = "Riktig kode!";
+        } else if (tall.length == 4) {
+            clear();
+            text.innerHTML = "Feil kode!";
+        } else if (knapp == "ok";) {
+
+        } else {
+            tall += knapp;
+            text.innerHTML = tall;
+        }
+
+
+
+    }
+
+</script>
+
+</body>
+</html>

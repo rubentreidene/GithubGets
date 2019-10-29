@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+       
+        var poeng = poeng();
+        var ball = ball();
+        var Nedtelling = Nedtelling();
+        Nedtelling.tellNed(10);
+
+
+        setInterval(function(){
+        var x = Math.random() * 80 + "%";
+        var y = Math.random() * 80 + "%";
+        ball.position(x, y);
+        }, 10000);
+        ball.onclick = poeng.øk;
+
+        function poeng(){
+            var el = document.createElement("div");
+
+            el.style.position = "fixed";
+            el.style.bottom = "5px";
+            el.style.left = "8px";
+            el.style.padding = "5px";
+            el.style.backgroundColor = "black";
+            el.style.color = "white";
+        
+        var _poeng = 0;
+        el.innerHTML = _poeng + " poeng";
+        document.body.appendChild(el);
+    
+        el.øk = function () {
+            _poeng += 100;
+            el.innerHTML = _poeng + " poeng";
+        };
+        el.nullstill = function(){
+            _poeng = 0;
+            el.innerHTML = _poeng + " poeng";
+        };
+        return el;
+        }
+        function ball() {
+            var el = document.createElement("div");
+            el.style.backgroundColor = "blue";
+            el.style.width = "80px";
+            el.style.height = "80px";
+            el.style.borderRadius = "40px";
+            el.style.position = "fixed";
+            el.style.top = "80%";
+            el.style.left = "50%";
+            
+
+           
+          
+            document.body.appendChild(el);
+
+            el.position = function (x, y) {
+                el.style.left = x;
+                el.style.top = y;
+            };
+
+            return el;
+        }
+        function Nedtelling(ferdig) {
+            var el = document.createElement("div");
+            el.style.position = "fixed";
+            el.style.left = "0";
+            el.style.bottom = "0";
+            el.style.height = "100%";
+            el.style.width = "3px";
+            el.style.backgroundColor = "red";
+            document.body.appendChild(el);
+
+            function prosent (slutt, tid){
+                return (slutt - Date.now()) / tid / 10;
+            }
+            el.tellNed = function (tid){
+                var slutt = Date.now() + tid * 1000;
+                var intervall = setInterval(tegn, 20);
+            
+            function tegn(){
+                var p = prosent(slutt, tid);
+                if (p < 0){
+                    el.style.height = "0%";
+                    clearInterval(intervall);
+                    ferdig();
+                }
+                el.style.height = p  + "%";
+            }    
+            }     
+                return el;
+        }
+        </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>MVC</title>
+   
+</head>
+
+<body>
+    <div id="the-div" onclick="clickDiv()"></div>
+    <div id="the-Div2" onclick="clickDiv2()"></div>
+
+    <script>
+        let theDiv = document.getElementById('the-div');
+        let theDiv2 = document.getElementById('the-Div2');
+
+        // Model
+        let color = 'black';
+        let border = 'dashed 10px pink'
+        let size = '300px';
+        let borderradius = '150px';
+        let color2 = 'yellow';
+        let size2 = '150px';
+        
+        
+        
+            
+        // View 
+        show();
+        function show() {
+            theDiv.style.backgroundColor = color;
+            theDiv.style.border = border;
+            theDiv.style.width = size;
+            theDiv.style.height = size;
+            theDiv.style.borderRadius = borderradius;
+            theDiv2.style.backgroundColor = color2;
+            theDiv2.style.width = size2;
+            theDiv2.style.height = size2;
+            
+        }
+
+        // Controller
+        function clickDiv() {
+            color = 'red';
+            border = 'dashed 10px black';
+            size = '150px';
+            borderradius = '150px';
+           
+            show();
+        }
+        function clickDiv2(){
+            color2 = 'blue';
+            size2 = '600px';
+       
+            show();
+        }
+    </script>
+</body>
+
+</html>

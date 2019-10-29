@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+	<style>
+	body{
+		background-color: aquamarine;
+	}
+	.grid-container {
+            display: grid;
+            grid-template-columns: 75px 75px 20px;
+            padding: 10%;
+            margin-top:-10px;
+            text-align: center;
+        }
+.grid-item {
+            background-color:yellow;
+            margin-top:10px;
+            padding:20px;
+            height:30px;
+            width:30px;
+            font-size:30px;
+            text-align:center;
+
+
+        }
+.grid-container1{
+	background-color: white;
+	margin-top: 50px;
+	padding: 20px;
+	height: 40px;
+	weight: 30px;
+	font-size: 20px;
+	text-align: center;
+	margin-left: 10px;
+	margin-bottom: 50px;
+
+}
+</style>
+</head>
+<body>
+<div id="tall" class="grid-container1">Code</div>
+<div class="grid-container">
+        <div id="1" class="grid-item" onclick="t(this.innerHTML)">1</div>
+        <div id="2" class="grid-item" onclick="t(this.innerHTML)">2</div>
+        <div id="3" class="grid-item" onclick="t(this.innerHTML)">3</div>
+        <div id="4" class="grid-item" onclick="t(this.innerHTML)">4</div>
+        <div id="5" class="grid-item" onclick="t(this.innerHTML)">5</div>
+        <div id="6" class="grid-item" onclick="t(this.innerHTML)">6</div>
+        <div id="7" class="grid-item" onclick="t(this.innerHTML)">7</div>
+        <div id="8" class="grid-item" onclick="t(this.innerHTML)">8</div>
+        <div id="9" class="grid-item" onclick="t(this.innerHTML)">9</div>
+
+</div>	
+<script>
+var box1;
+var box2;
+var box3;
+var box4;
+var box5;
+var box6;
+var box7;
+var box8;
+var box9;
+var tall=" ";
+var isGameFinished= false;
+
+
+function tall(trykk){
+if(document.getElementById("tall").innerHTML == "Code"){
+	document.getElementById("tall").innerHTML ="";
+}
+document.getElementById("tall").innerHTML += trykk;
+
+}
+</script>
+</body>
+</html>

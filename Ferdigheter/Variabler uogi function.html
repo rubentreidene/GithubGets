@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+<p>Variabel utenfor og innenfor function</p>
+<button onclick="Trykk()">Trykk</button>
+<div id="info">Trykk på knappen!</div>
+
+
+<script>
+	var tallA = 0;
+	var tekstA = 'TekstA';
+
+	function Trykk() {
+		var tallB = 0;
+		var tekstB = 'TekstB';
+
+		tallA++;
+		tallB++;
+		tekstA += '*';
+		tekstB += '*';
+
+		document.getElementById('info').innerHTML =
+			'tallA=' + tallA +
+			'</b>tallB=' + tallB +
+			'</br>TekstA=' + tekstA + 
+			'</br>TekstB=' + tekstB;
+	}
+</script>
+</body>
+</html>

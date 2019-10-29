@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Oppgave 7a</title>
+</head>
+<style>
+	body {
+		background-color: turquoise;
+	}
+</style>
+
+<body>
+    
+    
+    <div id="resultat"></div>
+   <div id="text"></div>
+    <script>
+        var resultatDiv = document.getElementById('resultat');
+        var resultatHtmlDiv = document.getElementById('text');
+        var tallAInput = document.getElementById('tallA');
+        var tallBInput = document.getElementById('tallB');
+        var boxDiv = document.getElementById('box');
+
+		randombox();
+
+
+        function randombox() {
+            var tallA = Math.floor(Math.random() * 500) ;
+            var tallB = Math.floor(Math.random() * 500);
+            var sum = tallA + tallB;
+            var bordersize = 7 + Math.floor(Math.random() * 7);
+
+
+            resultatDiv.style =
+                `width: ${tallB}px;
+                height: ${tallA}px; border: ${bordersize}px solid hotpink;` 
+				
+				
+            resultatHtmlDiv.innerHTML =
+                `border: ${bordersize}px solid hotpink;
+                width: ${tallB}px;
+               height: ${tallA}px; border: ${bordersize}px solid hotpink`; 
+        }
+    </script>
+</body>
+</html>

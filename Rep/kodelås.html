@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <h1>Kodelås oppgave!</h1>
+    <p>Skriv inn riktig kode:</p>
+    <div id="output"></div>
+
+    <div id="returText"></div>
+
+    <button onclick="tallene(this.innerHTML)">1</button>
+    <button onclick="tallene(this.innerHTML)">2</button>
+    <button onclick="tallene(this.innerHTML)">3</button>
+    <button onclick="tallene(this.innerHTML)">4</button>
+    <button onclick="tallene(this.innerHTML)">5</button>
+    <button onclick="tallene(this.innerHTML)">6</button>
+    <button onclick="tallene(this.innerHTML)">7</button>
+    <button onclick="tallene(this.innerHTML)">8</button>
+    <button onclick="tallene(this.innerHTML)">9</button>
+   
+
+    <script>
+        var correctCode = "";
+        var returText = document.getElementById('returText')
+
+
+        function tallene(tallknapper) {
+            var knappfunction = document.getElementById('output').innerHTML += tallknapper;
+        }
+        function tallene(knapp) {
+            if (correctCode == "8521") {
+                clear();
+                re turText.innerHTML = "Riktig kode!";
+            } else if (correctCode.length == 4) {
+                clear();
+                returText.innerHTML = "Feil kode!";
+            } else {
+                correctCode += knapp;
+                returText.innerHTML = knapp;
+            }
+        }
+        function clear() {
+            correctCode = "";
+        }
+    </script>
+
+
+</body>
+</html>
