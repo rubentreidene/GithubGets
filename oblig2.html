@@ -19,7 +19,7 @@
       Endre valgt stolpe
     </button>
     <br />
-    <button id="fjernStolpe" onclick="fjernStolpe()">
+    <button id="fjernStolpe" onclick="fjernStolpe()" disabled>
       Fjerne valgt stolpe
     </button>
 
@@ -38,8 +38,8 @@
           selectBarNo = "ingen";
         } else {
           selectBarNo = barNo;
+          showChart();
         }
-        updateButtons();
       }
 
       function showChart() {
@@ -50,15 +50,9 @@
           if (barNo === selectBarNo) {
             border = 1;
           }
-          svgInnerHtml += createBar(numbers[i], i + 1);
+          svgInnerHtml += createBar(numbers[i], i + 1, border);
         }
         svgTag.innerHTML = svgInnerHtml;
-        ValgtBarTekst.innerHTML = selectedBarNo;
-        if (selectedBarNo != "ingen") {
-          valueInput.value = numbers[selectedBarNo - 1];
-        } else {
-          valueInput.value = "";
-        }
       }
 
       function createBar(number, barNo, border) {
