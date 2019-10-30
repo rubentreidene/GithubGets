@@ -1,74 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Oblig2</title>
-</head>
-<body>
+  </head>
+  <body>
     <div>
-        <svg id="chart" width="500" viewBox="0 0 80 60"></svg>
+      <svg id="chart" width="500" viewBox="-2 5 100 105"></svg>
     </div>
-    Valgt stolpe: <span id="valgtStolpeVerdi"></span> <br>
-    
-    Verdi: 
+    Valgt stolpe: <span id="valgtStolpeVerdi"></span> <br />
+
+    Verdi:
     <input id="inputValue" type="number" min="1" max="10" />
     <button onclick="leggTilStolpe()">Legg til stolpe</button>
-    <button id="endreStolpe" onclick="endreStolpe()" disabled>Endre valgt stolpe</button>
-    <br>
-    <button id="fjernStolpe" onclick="fjernStolpe()" >Fjerne valgt stolpe</button>
-    
-    <script>
-        
-        let svgTag = document.getElementById('chart');
-        let numbers = [7, 3, 1, 5, 8];
-        let selectBarNo = 'ingen';
-        let ValgtBarTekst = document.getElementById('valgtStolpeVerdi');
-        let inputValue = document.getElementById('inputValue');
-        let endreStolpe = document.getElementById('endreStolpe');
-        let fjernStolpe = document.getElementById('fjernStolpe');
-        showChart();
+    <button id="endreStolpe" onclick="endreStolpe()" disabled>
+      Endre valgt stolpe
+    </button>
+    <br />
+    <button id="fjernStolpe" onclick="fjernStolpe()">
+      Fjerne valgt stolpe
+    </button>
 
-        function stolpeTrykket(barNo){
-        if (barNo === selectBarNo){
-            selectBarNo = 'ingen';
-        }
-        else{
-            selectBarNo = barNo
+    <script>
+      let svgTag = document.getElementById("chart");
+      let numbers = [7, 3, 1, 5, 8];
+      let selectBarNo = "ingen";
+      let ValgtBarTekst = document.getElementById("valgtStolpeVerdi");
+      let inputValue = document.getElementById("inputValue");
+      let endreStolpe = document.getElementById("endreStolpe");
+      let fjernStolpe = document.getElementById("fjernStolpe");
+      showChart();
+
+      function stolpeTrykket(barNo) {
+        if (barNo === selectBarNo) {
+          selectBarNo = "ingen";
+        } else {
+          selectBarNo = barNo;
         }
         updateButtons();
+      }
+
+      function showChart() {
+        let svgInnerHtml = "";
+        for (let i = 0; i < numbers.length; i++) {
+          let barNo = i + 1;
+          let border = 0;
+          if (barNo === selectBarNo) {
+            border = 1;
+          }
+          svgInnerHtml += createBar(numbers[i], i + 1);
         }
-
-        function showChart() {
-            let svgInnerHtml = '';
-            for (let i = 0; i < numbers.length; i++) {
-                let barNo = i + 1;
-                let border = 0;
-            if (barNo === selectBarNo) { border = 1; }    
-                svgInnerHtml += createBar(numbers[i], i + 1);
-            }
-            svgTag.innerHTML = svgInnerHtml;
-            ValgtBarTekst.innerHTML = selectedBarNo;
-            if (selectedBarNo != 'ingen') {
-                valueInput.value = numbers[selectedBarNo - 1];
-            } else {
-                valueInput.value = '';
-            }
+        svgTag.innerHTML = svgInnerHtml;
+        ValgtBarTekst.innerHTML = selectedBarNo;
+        if (selectedBarNo != "ingen") {
+          valueInput.value = numbers[selectedBarNo - 1];
+        } else {
+          valueInput.value = "";
         }
-    
+      }
 
-
-    
-    
-        function createBar(number, barNo, border) {
-            const width = 8;
-            const spacing = 2;
-            let x = (barNo - 1) * (width + spacing);
-            let height = number * 10;
-            let y = 60 - height;
-            let color = calcColor(1, 10, barNo);
-            return `<rect 
+      function createBar(number, barNo, border) {
+        const width = 8;
+        const spacing = 2;
+        let x = (barNo - 1) * (width + spacing);
+        let height = number * 10;
+        let y = 100 - height;
+        let color = calcColor(1, 10, barNo);
+        return `<rect 
             onclick="stolpeTrykket(${barNo})" 
             width="${width}" 
             height="${height}"
@@ -78,16 +78,16 @@
             stroke-width="${border}"
             stroke="black";>
             </rect>`;
-        }
-    
-        function calcColor(min, max, val) {
-            var minHue = 310, maxHue = 0;
-            var curPercent = (val - min) / (max - min);
-            var colString = "hsl(" + ((curPercent * (maxHue - minHue)) + minHue) + ",100%,50%)";
-            return colString;
-        }
-        
-       
+      }
+
+      function calcColor(min, max, val) {
+        var minHue = 310,
+          maxHue = 0;
+        var curPercent = (val - min) / (max - min);
+        var colString =
+          "hsl(" + (curPercent * (maxHue - minHue) + minHue) + ",100%,50%)";
+        return colString;
+      }
     </script>
-</body>
+  </body>
 </html>
