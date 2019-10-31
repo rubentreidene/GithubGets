@@ -32,8 +32,8 @@
       let inputValue = document.getElementById("inputValue");
       let endreStolpe = document.getElementById("endreStolpe");
       let removeBar = document.getElementById("fjernStolpe");
+      let leggtilBar = document.getElementById("leggTilStolpe")
       showChart();
-
       //controller
       function stolpeTrykket(barNo) {
         if (barNo === selectBarNo) {
@@ -43,6 +43,22 @@
         }
         showChart(barNo);
       }
+
+      
+      function fjernStolpe() {
+        numbers.splice(selectBarNo - 1, 1);
+        selectBarNo = "ingen";
+        showChart();
+      }
+
+      function leggTilStolpe(){
+          numbers.push(inputValue.value);
+          showChart();
+
+      }
+
+
+
       function createBar(number, barNo, border) {
         const width = 8;
         const spacing = 2;
@@ -61,13 +77,6 @@
             stroke="black";>
             </rect>`;
       }
-
-      function fjernStolpe() {
-        numbers.splice(selectBarNo - 1, 1);
-        selectBarNo = "ingen";
-        showChart();
-      }
-
       function calcColor(min, max, val) {
         var minHue = 310,
           maxHue = 0;
@@ -76,7 +85,6 @@
           "hsl(" + (curPercent * (maxHue - minHue) + minHue) + ",100%,50%)";
         return colString;
       }
-
       //view
       function showChart(barNo) {
         let svgInnerHtml = "";
@@ -95,7 +103,6 @@
           endreStolpe.disabled = true;
           removeBar.disabled = true;
         }
-
         svgTag.innerHTML = svgInnerHtml;
         ValgtBarTekst.innerHTML = selectBarNo;
       }
