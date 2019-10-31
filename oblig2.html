@@ -24,37 +24,25 @@
     </button>
 
     <script>
+      //model
       let svgTag = document.getElementById("chart");
       let numbers = [7, 3, 1, 5, 8];
       let selectBarNo = "ingen";
       let ValgtBarTekst = document.getElementById("valgtStolpeVerdi");
       let inputValue = document.getElementById("inputValue");
       let endreStolpe = document.getElementById("endreStolpe");
-      let fjernStolpe = document.getElementById("fjernStolpe");
+      let removeBar = document.getElementById("fjernStolpe");
       showChart();
 
+      //controller
       function stolpeTrykket(barNo) {
         if (barNo === selectBarNo) {
           selectBarNo = "ingen";
         } else {
           selectBarNo = barNo;
-          showChart();
         }
+        showChart(barNo);
       }
-
-      function showChart() {
-        let svgInnerHtml = "";
-        for (let i = 0; i < numbers.length; i++) {
-          let barNo = i + 1;
-          let border = 0;
-          if (barNo === selectBarNo) {
-            border = 1;
-          }
-          svgInnerHtml += createBar(numbers[i], i + 1, border);
-        }
-        svgTag.innerHTML = svgInnerHtml;
-      }
-
       function createBar(number, barNo, border) {
         const width = 8;
         const spacing = 2;
@@ -62,16 +50,22 @@
         let height = number * 10;
         let y = 100 - height;
         let color = calcColor(1, 10, barNo);
-        return `<rect 
-            onclick="stolpeTrykket(${barNo})" 
-            width="${width}" 
+        return `<rect
+            onclick="stolpeTrykket(${barNo})"
+            width="${width}"
             height="${height}"
-            x="${x}" 
-            y="${y}" 
+            x="${x}"
+            y="${y}"
             fill="${color}"
             stroke-width="${border}"
             stroke="black";>
             </rect>`;
+      }
+
+      function fjernStolpe() {
+        numbers.splice(selectBarNo - 1, 1);
+        selectBarNo = "ingen";
+        showChart();
       }
 
       function calcColor(min, max, val) {
@@ -81,6 +75,29 @@
         var colString =
           "hsl(" + (curPercent * (maxHue - minHue) + minHue) + ",100%,50%)";
         return colString;
+      }
+
+      //view
+      function showChart(barNo) {
+        let svgInnerHtml = "";
+        for (let i = 0; i < numbers.length; i++) {
+          let barNo = i + 1;
+          let border = 0;
+          if (barNo === selectBarNo) {
+            border = 1;
+          }
+          svgInnerHtml += createBar(numbers[i], i + 1, border);
+        }
+        if (barNo === selectBarNo) {
+          endreStolpe.disabled = false;
+          removeBar.disabled = false;
+        } else {
+          endreStolpe.disabled = true;
+          removeBar.disabled = true;
+        }
+
+        svgTag.innerHTML = svgInnerHtml;
+        ValgtBarTekst.innerHTML = selectBarNo;
       }
     </script>
   </body>
