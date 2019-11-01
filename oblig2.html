@@ -24,15 +24,17 @@
     </button>
 
     <script>
-      //model
       let svgTag = document.getElementById("chart");
-      let numbers = [7, 3, 1, 5, 8];
-      let selectBarNo = "ingen";
       let ValgtBarTekst = document.getElementById("valgtStolpeVerdi");
       let inputValue = document.getElementById("inputValue");
-      let endreStolpe = document.getElementById("endreStolpe");
+      let changeStolpe = document.getElementById("endreStolpe");
       let removeBar = document.getElementById("fjernStolpe");
-      let leggtilBar = document.getElementById("leggTilStolpe")
+      let leggtilBar = document.getElementById("leggTilStolpe");
+
+      //model
+      let numbers = [7, 3, 1, 5, 8];
+      let selectBarNo = "ingen";
+
       showChart();
       //controller
       function stolpeTrykket(barNo) {
@@ -44,20 +46,23 @@
         showChart(barNo);
       }
 
-      
       function fjernStolpe() {
         numbers.splice(selectBarNo - 1, 1);
         selectBarNo = "ingen";
         showChart();
       }
 
-      function leggTilStolpe(){
-          numbers.push(inputValue.value);
-          showChart();
-
+      function leggTilStolpe() {
+        numbers.push(inputValue.value);
+        showChart();
       }
 
+      function endreStolpe() {
+        numbers[selectBarNo - 1] = inputValue.value;
+        //numbers.push(inputValue.value);
 
+        showChart();
+      }
 
       function createBar(number, barNo, border) {
         const width = 8;
@@ -97,10 +102,10 @@
           svgInnerHtml += createBar(numbers[i], i + 1, border);
         }
         if (barNo === selectBarNo) {
-          endreStolpe.disabled = false;
+          changeStolpe.disabled = false;
           removeBar.disabled = false;
         } else {
-          endreStolpe.disabled = true;
+          changeStolpe.disabled = true;
           removeBar.disabled = true;
         }
         svgTag.innerHTML = svgInnerHtml;
